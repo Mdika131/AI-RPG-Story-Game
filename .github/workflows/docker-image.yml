@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:latest
+
+    - name: Test Run Docker Container with Gemini Secret
+      run: docker run -d -p 7860:7860 -e GEMINI_API_KEY="${{ secrets.GEMINI_API_KEY }}" my-image-name:latest
