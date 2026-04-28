@@ -45,7 +45,10 @@ app.post("/game-api", async (req, res) => {
   }
 });
 
-// Port wajib 7860 untuk Hugging Face Spaces
-app.listen(7860, () => {
-    console.log("Server Isekai Aktif di port 7860!");
-});
+if (require.main === module) {
+    app.listen(3000, () => {
+        console.log("Server Isekai Aktif!");
+    });
+}
+
+module.exports = app;
